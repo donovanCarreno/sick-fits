@@ -67,14 +67,17 @@ class CreateItem extends Component {
         variables={this.state}
       >
         {(createItem, {loading, error}) => (
-          <Form onSubmit={async e => {
-            e.preventDefault()
-            const res = await createItem()
-            Router.push({
-              pathname: '/item',
-              query: {id: res.data.createItem.id}
-            })
-          }}>
+          <Form
+            data-test='form'
+            onSubmit={async e => {
+              e.preventDefault()
+              const res = await createItem()
+              Router.push({
+                pathname: '/item',
+                query: {id: res.data.createItem.id}
+              })
+            }}
+          >
             <Error error={error} />
             <fieldset disabled={loading} aria-busy={loading}>
             <label htmlFor='file'>
